@@ -1,0 +1,36 @@
+.gamesBoard {
+    background-color: rgba(0, 0, 0, 0.877);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gameCard {
+    flex: 1;
+    font-size: 12px;
+    background-color: rgb(228, 228, 228);
+    position: relative;
+}
+
+.gameCover {
+    width: 100%;
+    height: 70%;
+}
+
+.rateField {
+    width: 9%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -1%;
+    right: -2%;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #ffa500eb;
+    border-radius: 7px;
+    padding: 3px;
+}
+.starRate {
+    width: 60%;
+}
