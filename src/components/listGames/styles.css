@@ -1,0 +1,83 @@
+.gamesBoard {
+    background-color: rgba(0, 0, 0, 0.877);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gameCard {
+    flex: 1;
+    font-size: 12px;
+    /*background-color: rgb(73, 73, 73);*/
+    position: relative;
+    transition: transform .2s;
+    color: #fff;
+}
+
+.gameCard:hover {
+    transform: scale(1.03);
+}
+
+.gameCover {
+    width: 100%;
+    height: 100%;
+}
+
+
+.gameCover:hover+.gameInfos {
+    transition: transform .2s;
+    animation: fadeIn linear .2s;
+    opacity: 1;
+}
+
+.gameInfos:hover {
+    transition: transform .2s;
+    animation: fadeIn linear .2s;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+.gameInfos {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000ce;
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rateField {
+    width: 9%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -1%;
+    right: -2%;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #ffa500eb;
+    border-radius: 7px;
+    padding: 3px;
+}
+
+.starRate {
+    width: 60%;
+}
+
+.popup-content {
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: 50%;
+    padding: 5px;
+  }

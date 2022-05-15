@@ -1,12 +1,12 @@
 import './App.css';
-import ShowGame from './components/showGame/showGame';
+import ListGames from './components/listGames/listGames';
 import CreateGame from './components/registerGame/registerGame';
 
 function App() {
-
+  
   return (
     <div className="App">
-      <ShowGame />
+      <ListGames />
       <CreateGame />
     </div>
   );

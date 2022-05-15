@@ -1,14 +1,21 @@
 import { useState } from "react"
 import { db } from '../../firebase-config'
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 
 function CreateGame() {
     const gamesCollectionRef = collection(db, "games");
     const [newTitle, setNewTitle] = useState("")
     const [newRate, setNewRate] = useState(0)
     const [newPlataform, setNewPlataform] = useState("")
+    const [newUrl, setNewUrl] = useState("")
     const createGame = async () => {
-        await addDoc(gamesCollectionRef, { title: newTitle, rate: Number(newRate), plataform: newPlataform })
+        if (newTitle && newRate && newPlataform)
+        { 
+            alert("cadastra")
+        } else {
+            alert("nao cadastra")
+        }
+        //await addDoc(gamesCollectionRef, { title: newTitle, rate: Number(newRate), plataform: newPlataform, url: newUrl })
     }
 
     return (
@@ -28,6 +35,12 @@ function CreateGame() {
             />
             <input
                 placeholder='Plataforma'
+                onChange={(event) => {
+                    setNewUrl(event.target.value)
+                }}
+            />
+            <input
+                placeholder='URL'
                 onChange={(event) => {
                     setNewPlataform(event.target.value)
                 }}
