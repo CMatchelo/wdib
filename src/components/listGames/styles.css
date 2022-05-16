@@ -1,5 +1,4 @@
 .gamesBoard {
-    background-color: rgba(0, 0, 0, 0.877);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 20px;
@@ -38,9 +37,14 @@
 }
 
 @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 .gameInfos {
     opacity: 0;
@@ -76,8 +80,23 @@
 }
 
 .popup-content {
+    position: fixed !important;
     margin: auto;
-    background: rgb(255, 255, 255);
-    width: 50%;
+    background: rgb(61, 61, 61) !important;
+    color: #fff !important;
+    width: 50% !important;
     padding: 5px;
-  }
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    max-width: 500px;
+}
+
+@media only screen and (max-width: 768px) {
+    .gamesBoard {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+}

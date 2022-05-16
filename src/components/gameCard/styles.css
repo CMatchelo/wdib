@@ -1,8 +1,33 @@
 .test {
-    width: 500px;
-    height: 100px;
-    background-color: red;
+    width: 100%;
+    height: auto;
 }
 
+h1 {
+    font-size: 15px;
+}
+.popupGameCard {
+    display: flex;
+    align-items: center;
+}
 
+.popupGameCover {
+    flex: 1;
+    padding: 10px;
+}
+
+.popupGameInfos {
+    flex: 2;
+    padding: 10px;
+}
+
+.popupGameCover img {
+    width: 100%;
+    height: auto;
+}
+@media only screen and (max-width: 768px) {
+    .popupGameCard {
+        flex-direction: column;
+    }
+}
 

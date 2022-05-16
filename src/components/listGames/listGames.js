@@ -13,8 +13,7 @@ function ListGames() {
     const [games, setGames] = useState([]);
     const gamesCollectionRef = collection(db, "games");
     
-
-    const updateGame = async (id, rate) => {
+    /*const updateGame = async (id, rate) => {
         const userDoc = doc(db, "games", id)
         const newFields = { rate: rate + 1 }
         await updateDoc(userDoc, newFields)
@@ -27,24 +26,22 @@ function ListGames() {
 
     function test() {
         alert("testou")
-    }
+    }*/
 
     useEffect(() => {
-
         const getGames = async () => {
             const data = await getDocs(gamesCollectionRef);
             setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
-
         getGames();
-
     }, [])
+
     return (
         <div className="gamesBoard">
             {games.map((game) => {
                 return (
 
-                    <div className="gameCard" onClick={test}>
+                    <div className="gameCard">
                         {" "}
                         <img src={game.url} className="gameCover"></img>
                         <Popup className="popup-content" trigger={
@@ -54,7 +51,7 @@ function ListGames() {
                             </div>
                         } position="right center">
                             <div>
-                                <GameCard className="popup-content"/>
+                                <GameCard { ... game } className="popup-content"/>
                             </div>
                         </Popup>
 
