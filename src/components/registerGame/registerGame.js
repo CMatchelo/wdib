@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { db } from '../../firebase-config'
 import { collection, addDoc } from 'firebase/firestore'
-import * as firebase from 'firebase/firestore'
 import './styles.css'
 
 function CreateGame() {

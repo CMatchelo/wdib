@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { db } from '../../firebase-config'
-import { collection, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 import star from '../../img/starFilled.png'
 import './styles.css'
 import GameCard from "../gameCard/gameCard"
@@ -34,7 +34,7 @@ function ListGames() {
             setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
         getGames();
-    }, [])
+    }, )
 
     return (
         <div className="gamesBoard">
@@ -56,7 +56,7 @@ function ListGames() {
                         </Popup>
 
                         <div className="rateField">
-                            <span className="numberRate">{game.rate} </span><img src={star} className="starRate"></img>
+                            <span className="numberRate">{game.rate} </span><img src={star} alt="star" className="starRate"></img>
                         </div>
 
                     </div>
