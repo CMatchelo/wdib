@@ -79,6 +79,10 @@
     width: 60%;
 }
 
+.numberRate {
+    flex: 1;
+}
+
 .popup-content {
     position: fixed !important;
     margin: auto;
@@ -90,6 +94,7 @@
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     max-width: 500px;
+    border: 1px solid #ffa500eb !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -98,5 +103,10 @@
         grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
         gap: 20px;
         padding: 20px;
+    }
+    .rateField {
+        width: 25%;
+        top: -4%;
+        right: -7%;
     }
 }

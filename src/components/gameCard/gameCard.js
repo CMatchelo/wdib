@@ -6,7 +6,7 @@ function GameCard(game) {
 
     var gametime, dataFinished;
     if (game.gametime) {
-        gametime = game.gametime;
+        gametime = game.gametime + " hours";
     } else {
         gametime = "No info"
     }
@@ -26,13 +26,13 @@ function GameCard(game) {
     return (
         <div className='popupGameCard'>
             <div className='popupGameCover'>
-                <img src={game.url} className="gameCover"></img>
+                <img src={game.url} className="gameCover" alt='No cover'></img>
             </div>
             <div className='popupGameInfos'>
                 <h1>Title: {game.title}</h1>
                 <h1>Date: {dataFinished} </h1>
                 <h1>Plataform: {game.plataform}</h1>
-                <h1>Gametime: {gametime} hours</h1>
+                <h1>Gametime: {gametime} </h1>
                 <h1>Rating: {game.rate}/10 </h1>
             </div>
         </div>

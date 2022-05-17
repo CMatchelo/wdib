@@ -43,7 +43,7 @@ function ListGames() {
 
                     <div className="gameCard">
                         {" "}
-                        <img src={game.url} className="gameCover"></img>
+                        <img src={game.url} className="gameCover" alt='No cover'></img>
                         <Popup className="popup-content" trigger={
                             <div className="gameInfos">
                                 <h1>{game.title} </h1>
@@ -56,7 +56,7 @@ function ListGames() {
                         </Popup>
 
                         <div className="rateField">
-                            <span>{game.rate} </span><img src={star} className="starRate"></img>
+                            <span className="numberRate">{game.rate} </span><img src={star} className="starRate"></img>
                         </div>
 
                     </div>

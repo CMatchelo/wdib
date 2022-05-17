@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.titleRegister {
+    color: #ffa600;
+}
+
 .registerInfos {
     flex: 5
 }
