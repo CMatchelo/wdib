@@ -12,6 +12,7 @@ import 'reactjs-popup/dist/index.css';
 function ListGames() {
     const [games, setGames] = useState([]);
     const gamesCollectionRef = collection(db, "games");
+    var i = 0;
     
     /*const updateGame = async (id, rate) => {
         const userDoc = doc(db, "games", id)
@@ -27,14 +28,15 @@ function ListGames() {
     function test() {
         alert("testou")
     }*/
-
+    const getGames = async () => {
+        const data = await getDocs(gamesCollectionRef);
+        setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
     useEffect(() => {
-        const getGames = async () => {
-            const data = await getDocs(gamesCollectionRef);
-            setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        };
         getGames();
-    }, )
+        console.log("aqui")
+        i++;
+    },[])
 
     return (
         <div className="gamesBoard">

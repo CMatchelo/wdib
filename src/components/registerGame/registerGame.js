@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { db } from '../../firebase-config'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, setDoc } from 'firebase/firestore'
+import { useCurrentUser } from "../../providers/UserProvider"
 import './styles.css'
 
 function CreateGame() {
+    const { user } = useCurrentUser();
     const gamesCollectionRef = collection(db, "games");
     const [newTitle, setNewTitle] = useState("")
     const [newRate, setNewRate] = useState(0)
@@ -15,9 +17,9 @@ function CreateGame() {
         if (newDate && newTitle && newRate && newPlataform) {
             var date = newDate.split("-");
             var newDate2 = new Date(date[0], date[1] - 1, date[2]);
-            await addDoc(gamesCollectionRef, { title: newTitle, rate: Number(newRate), plataform: newPlataform, url: newUrl, dataFinished: newDate2, gametime: newGametime })
-            
-            window.location.reload(false);
+            await addDoc(collection(db, user.user.uid), { title: newTitle, rate: Number(newRate), plataform: newPlataform, url: newUrl, dataFinished: newDate2, gametime: newGametime })
+            console.log(user.user.uid)
+            //window.location.reload(false);
         } else {
             alert("Preenchas todos os dados obrigatórios")
         }
