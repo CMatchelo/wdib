@@ -1,0 +1,66 @@
+.loggedArea {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    background-color: #ffa600;
+    padding: 0 5%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loggedArea input {
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.logoutBtn {
+    background-color: #ffa600;
+    height: 30px;
+    border: none;
+    transition: all .2s ease-in-out;
+}
+
+.logoutBtn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.logoutBtn img {
+    height: 100%;
+}
+
+.logRegArea {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffa600;
+    padding: 0 0 30px 0;
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 0 40%;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 160px;
+}
+
+.menuLogReg {
+    width: 100%;
+    display: flex;
+}
+
+.menuLogReg Button{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: none;
+    width: 50%;
+}
+
+.loginArea, .regArea {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+}

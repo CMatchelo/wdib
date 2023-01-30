@@ -6,14 +6,16 @@ import './styles.css'
 import GameCard from "../gameCard/gameCard"
 import React from 'react';
 import Popup from 'reactjs-popup';
+import { useCurrentUser } from "../../providers/UserProvider"
 import 'reactjs-popup/dist/index.css';
 
 
 function ListGames() {
     const [games, setGames] = useState([]);
-    const gamesCollectionRef = collection(db, "games");
+    //const gamesCollectionRef = collection(db, user?.user.uid);
+    const { user } = useCurrentUser();
     var i = 0;
-    
+
     /*const updateGame = async (id, rate) => {
         const userDoc = doc(db, "games", id)
         const newFields = { rate: rate + 1 }
@@ -29,14 +31,18 @@ function ListGames() {
         alert("testou")
     }*/
     const getGames = async () => {
-        const data = await getDocs(gamesCollectionRef);
-        setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        if (user) {
+            const data = await getDocs(collection(db, 'users', user.user.uid, 'games'));
+            setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            console.log(data)
+        } else {
+            setGames([])
+        }
     };
+    
     useEffect(() => {
         getGames();
-        console.log("aqui")
-        i++;
-    },[])
+    }, [user])
 
     return (
         <div className="gamesBoard">
@@ -53,7 +59,7 @@ function ListGames() {
                             </div>
                         } position="right center">
                             <div>
-                                <GameCard { ... game } className="popup-content"/>
+                                <GameCard {...game} className="popup-content" />
                             </div>
                         </Popup>
 
