@@ -1,7 +1,7 @@
 import { useContext, createContext, useState, useMemo, useEffect } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth, db } from '../firebase-config';
-import { addDoc, collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getDoc, doc, setDoc } from 'firebase/firestore';
 
 
 const ReactUserContext = createContext(null)
@@ -13,10 +13,14 @@ export function UserContextWrapper(props) {
     const [user, setUser] = useState(null);
     const [user2, setUser2] = useState(null);
 
-    const register = async (firstName) => {
+    const [gamesDB, setGamesDB] = useState([]);
+
+    const register = async (newEmail, newPassword, newUsername) => {
         try {
-            const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-            await addDoc(collection(db, `users/${user.user.uid}`), { firstName: firstName })
+            const temp = await createUserWithEmailAndPassword(auth, newEmail, newPassword);
+            setUser(temp);
+            await setDoc(doc(db, 'users', temp.user.uid, 'infos', 'infos'), { username: newUsername, totalGametime: 0 })
+            setUser2({ username: newUsername, totalGametime: 0 })
         } catch (error) {
             console.log(error.message)
         }
@@ -27,8 +31,8 @@ export function UserContextWrapper(props) {
             const temp = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
             setUser(temp);
             const data = await getDocs(collection(db, 'users', temp.user.uid, 'infos'));
-            console.log(data)
             setUser2(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]);
+            console.log(gamesDB)
         } catch (error) {
             console.log(error.message)
         }
@@ -42,6 +46,16 @@ export function UserContextWrapper(props) {
     const userMngr = useMemo(() => {
         return { user, user2, logout, login, register }
     }, [user, user2, logout, login, register])
+
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await getDocs(collection(db, 'gamesDB'));
+            console.log(data)
+            setGamesDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            console.log(gamesDB)
+        }
+    }, [])
 
     return (
         <ReactUserContext.Provider value={userMngr}>{props.children}</ReactUserContext.Provider>

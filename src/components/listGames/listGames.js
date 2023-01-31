@@ -12,7 +12,6 @@ import 'reactjs-popup/dist/index.css';
 
 function ListGames() {
     const [games, setGames] = useState([]);
-    //const gamesCollectionRef = collection(db, user?.user.uid);
     const { user } = useCurrentUser();
     var i = 0;
 
@@ -34,7 +33,6 @@ function ListGames() {
         if (user) {
             const data = await getDocs(collection(db, 'users', user.user.uid, 'games'));
             setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log(data)
         } else {
             setGames([])
         }
