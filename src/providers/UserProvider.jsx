@@ -1,17 +1,17 @@
 import { useContext, createContext, useState, useMemo, useEffect } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth, db } from '../firebase-config';
-import { addDoc, collection, getDocs, getDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 
 
 const ReactUserContext = createContext(null)
 
 export function UserContextWrapper(props) {
-    const [registerEmail, setRegisterEmail] = useState("")
-    const [registerPassword, setRegisterPassword] = useState("")
 
     const [user, setUser] = useState(null);
     const [user2, setUser2] = useState(null);
+
+    const [games, setGames] = useState([]);
 
     const [gamesDB, setGamesDB] = useState([]);
 
@@ -32,7 +32,8 @@ export function UserContextWrapper(props) {
             setUser(temp);
             const data = await getDocs(collection(db, 'users', temp.user.uid, 'infos'));
             setUser2(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0]);
-            console.log(gamesDB)
+            console.log(temp)
+            console.log(data)
         } catch (error) {
             console.log(error.message)
         }
@@ -44,18 +45,30 @@ export function UserContextWrapper(props) {
     }
 
     const userMngr = useMemo(() => {
-        return { user, user2, logout, login, register }
-    }, [user, user2, logout, login, register])
+        return { user, user2, games, gamesDB, logout, login, register, setGames }
+    }, [user, user2, gamesDB, games, logout, login, register, setGames])
 
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchAllGames() {
             const data = await getDocs(collection(db, 'gamesDB'));
-            console.log(data)
+            console.log("data")
             setGamesDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            console.log(gamesDB)
         }
+        fetchAllGames();
     }, [])
+
+    useEffect(() => {
+        const getGames = async () => {
+            if (user) {
+                const data = await getDocs(collection(db, 'users', user.user.uid, 'games'));
+                setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            } else {
+                setGames([])
+            }
+        };
+        getGames();
+    }, [user])
 
     return (
         <ReactUserContext.Provider value={userMngr}>{props.children}</ReactUserContext.Provider>

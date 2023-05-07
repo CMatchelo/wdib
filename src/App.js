@@ -14,7 +14,6 @@ function App() {
       <LoginManager />
       <CreateGame />
       <ListGames />
-      <GamePage />
     </div>
   );
 }

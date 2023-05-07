@@ -6,8 +6,23 @@
     align-items: center;
 }
 
+#registerArea {
+    display: none;
+}
+
 .titleRegister {
     color: #ffa600;
+}
+
+.titleRegister button {
+    background-color: rgb(37, 37, 37);
+    border: none;
+    display: none;
+}
+
+.titleRegister img {
+    height: 20px;
+    filter: invert(66%) sepia(15%) saturate(4179%) hue-rotate(359deg) brightness(103%) contrast(101%);
 }
 
 .registerInfos {
@@ -18,7 +33,8 @@
     width: 45%;
     border: none;
     border-bottom: 1px solid #ffa600;
-    background-color: rgb(37, 37, 37);;
+    background-color: rgb(37, 37, 37);
+    ;
     margin: 10px 2%;
     color: #fff;
 }
@@ -38,7 +54,10 @@
     border: 1px solid #ffa600;
     cursor: pointer;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 45px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
 }
 
 .gameRegisterBtn:hover {
@@ -51,11 +70,34 @@
     .registerArea {
         flex-direction: column;
     }
+
     .gameInfoInput {
         width: 96%;
     }
+
     .registerSend {
         width: 50%;
     }
-}
 
+    .titleRegister {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .titleRegister button {
+        display: block;
+    }
+
+    .toggle-div {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-out;
+      }
+      
+      .toggle-div.active {
+        height: 270px;
+      }
+}

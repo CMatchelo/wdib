@@ -1,0 +1,142 @@
+.gameWindow {
+    position: fixed;
+    z-index: 9;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    background-color: rgb(61, 61, 61);
+    transform: translate(-50%, -50%);
+    padding: 1%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    border: 1px solid #ffa600;
+    align-items: center;
+}
+
+.closeGamePageBtn {
+    position: fixed;
+    top: -1%;
+    left: 98%;
+    background-color: #ffa600;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.gamePageCover {
+    margin-right: 5%;
+}
+
+.gamePageInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.gamePageData {
+    width: 65%;
+    margin-right: 5%;
+}
+
+.gamePageTitleArea {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+
+.gamePageTitle {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.gamePageReponse {
+    font-size: 14px;
+}
+
+.gamePageBtns {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    justify-content: space-evenly;
+}
+
+.gamePageBtn {
+    padding: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    width: 30%;
+}
+
+.gamePageBtn:hover {
+    background-color: #ffa600;
+    box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.199);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+.gamePagePlatformsList {
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.gamePageYear {
+    font-size: 10px;
+}
+
+.gamePageInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.gameCompletedInfo {
+    width: 100%;
+    background-color: rgb(61, 61, 61);
+}
+
+@media only screen and (max-width: 768px) {
+    .gameWindow {
+        flex-direction: column;
+        width: 85%;
+    }
+    .closeGamePageBtn {
+        top: 1%;
+        left: 91%;
+    }
+    .gamePageCover {
+        margin: 10px 0 10px 0;
+        width: 70%;
+    }
+    .gamePageCover img {
+        width: 60%;
+    }
+    .gamePageTitleArea {
+        align-items: center;
+        flex-direction: column;
+    }
+    .gamePageData {
+        width: 80%;
+        margin-right: 0;
+    }
+    .gamePagePlatformsList {
+        justify-content: space-evenly;
+    }
+    .gamePageBtn {
+        width: 60%;
+        margin: 0px 20% 5px;
+    }
+}

@@ -1,53 +1,28 @@
-import { useState, useEffect } from "react"
-import { db } from '../../firebase-config'
-import { collection, getDocs } from 'firebase/firestore'
 import star from '../../img/starFilled.png'
 import './styles.css'
 import GameCard from "../gameCard/gameCard"
-import React from 'react';
+import React, { useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import { useCurrentUser } from "../../providers/UserProvider"
 import 'reactjs-popup/dist/index.css';
+import { useState } from "react";
 
 
 function ListGames() {
-    const [games, setGames] = useState([]);
-    const { user } = useCurrentUser();
-    var i = 0;
+    const { games } = useCurrentUser();
+    const [ allGames, setAllGames ] = useState([])
 
-    /*const updateGame = async (id, rate) => {
-        const userDoc = doc(db, "games", id)
-        const newFields = { rate: rate + 1 }
-        await updateDoc(userDoc, newFields)
-    }
+    useEffect( () => {
+        setAllGames(games)
+        console.log(games)
+    },[games])
 
-    const deleteGame = async (id) => {
-        const userDoc = doc(db, "games", id)
-        await deleteDoc(userDoc);
-    }
-
-    function test() {
-        alert("testou")
-    }*/
-    const getGames = async () => {
-        if (user) {
-            const data = await getDocs(collection(db, 'users', user.user.uid, 'games'));
-            setGames(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        } else {
-            setGames([])
-        }
-    };
-    
-    useEffect(() => {
-        getGames();
-    }, [user])
 
     return (
         <div className="gamesBoard">
             {games.map((game) => {
                 return (
-
-                    <div className="gameCard">
+                    <div className="gameCard" key={game.id}>
                         {" "}
                         <img src={game.url} className="gameCover" alt='No cover'></img>
                         <Popup className="popup-content" trigger={
